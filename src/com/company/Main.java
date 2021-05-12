@@ -1,28 +1,36 @@
 package com.company;
 
+import com.company.models.Cart;
 import com.company.models.Product;
 import com.company.models.Varient;
-import com.company.models.VarientBasedProduct;
-import com.company.models.WeightBasedProduct;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        Product apple = new WeightBasedProduct(1,100,"Apple","");
-        Product orange = new WeightBasedProduct(1,80,"Orange"," ");
-        Product Kiwi = new VarientBasedProduct("kiwi","",new ArrayList<>(
-                Arrays.asList(new Varient("500g",150),new Varient("1kg",300))));
 
+      Product apple = new Product("apple"," ",1,100)
+              ,orange = new Product("orange"," ",0.5f,80)
+              ,kiwi = new Product("kiwi"," ", new ArrayList<>(
+                      Arrays.asList(new Varient("500g",50),
+                              new Varient("1Kg",100)
 
-        List<Product> products = new ArrayList<>(
-                Arrays.asList(apple,orange,Kiwi)
-        );
-        System.out.println(products);
+      )))
+              , surfExcel=new Product("surfExcel"," ",new ArrayList<>(
+              Collections.singletonList(new Varient("1kg", 150))
+      ));
+      Cart cart = new Cart();
+      cart.add(apple,2.4f);
+        cart.add(kiwi,kiwi.variants.get(1));
+        cart.add(kiwi,kiwi.variants.get(1));
+        cart.add(kiwi,kiwi.variants.get(1));
 
+        cart.decrement(kiwi,kiwi.variants.get(1));
+        System.out.print(cart);
     }
+
+
 }
